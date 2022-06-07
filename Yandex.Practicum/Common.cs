@@ -21,5 +21,13 @@ namespace Yandex.Practicum
                 .Select(int.Parse)
                 .ToList();
         }
+
+        public static int[] ReadArray(TextReader reader)
+        {
+            return reader.ReadLine()
+                .Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(int.Parse)
+                .ToArray();
+        }
     }
 }

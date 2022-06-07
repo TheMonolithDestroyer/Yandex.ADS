@@ -20,6 +20,14 @@ namespace Yandex.Practicum
             return int.Parse(_reader.ReadLine());
         }
 
+        private static int[] ReadArray()
+        {
+            return _reader.ReadLine()
+                .Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(int.Parse)
+                .ToArray();
+        }
+
         private static List<int> ReadList()
         {
             return _reader.ReadLine()
@@ -38,13 +46,6 @@ namespace Yandex.Practicum
         {
             _reader.Close();
             _writer.Close();
-        }
-
-        private static int[] SubArray(int[] array, int offset, int length)
-        {
-            int[] result = new int[length];
-            Array.Copy(array, offset, result, 0, length);
-            return result;
         }
     }
 }

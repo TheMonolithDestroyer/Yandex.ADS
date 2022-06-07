@@ -9,16 +9,16 @@ namespace Yandex.Practicum
 {
     public class BaseClass
     {
-        protected internal static TextReader _reader;
-        protected internal static TextWriter _writer;
+        protected static TextReader _reader;
+        protected static TextWriter _writer;
 
-        internal protected virtual void InitReaderAndWriter()
+        protected static void InitReaderAndWriter()
         {
             _reader = new StreamReader(Console.OpenStandardInput());
             _writer = new StreamWriter(Console.OpenStandardOutput());
         }
 
-        internal protected virtual void CloseReaderAndWriter()
+        protected static void CloseReaderAndWriter()
         {
             _reader.Close();
             _writer.Close();

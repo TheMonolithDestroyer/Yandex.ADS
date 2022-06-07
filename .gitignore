@@ -261,3 +261,4 @@ Ghpr.Core/.vs/Ghpr.Core/DesignTimeBuild/.dtbcache
 *.testlog
 *.manifest
 .vs/Ghpr.Core/DesignTimeBuild/.dtbcache.v2
+.vs/

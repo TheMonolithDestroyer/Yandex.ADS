@@ -31,6 +31,9 @@ namespace Yandex.Practicum.Sprints.Sprint0
             CloseReaderAndWriter();
         }
 
+        /// <summary>
+        /// Наивный алгоритм среднего скользящего 
+        /// </summary>
         private void MovingAverageMethod(int k, int[] timeseries)
         {
             var length = timeseries.Length - k;
@@ -50,6 +53,35 @@ namespace Yandex.Practicum.Sprints.Sprint0
                 decimal currentAvg = currentSum / k;
                 result.Add(currentAvg);
             }
+        }
+
+        /// <summary>
+        /// Метод среднего скользящего без вложенного цикла
+        /// </summary>
+        private static void MovingAgerageMethodOptimized(int k, int[] timeseries)
+        {
+            var length = timeseries.Length - k;
+            var result = new List<decimal>();
+
+            decimal currentSum = SubArray(timeseries, 0, k).Sum();
+            result.Add(currentSum / k);
+
+            var endIndex = 0;
+            for (int beginIndex = 1; beginIndex <= length; beginIndex++)
+            {
+                endIndex = beginIndex + k;
+                currentSum -= timeseries[beginIndex - 1];
+                currentSum += timeseries[endIndex - 1];
+
+                result.Add(currentSum / k);
+            }
+        }
+
+        public static int[] SubArray(int[] array, int offset, int length)
+        {
+            int[] result = new int[length];
+            Array.Copy(array, offset, result, 0, length);
+            return result;
         }
     }
 }

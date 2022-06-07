@@ -39,5 +39,12 @@ namespace Yandex.Practicum
             _reader.Close();
             _writer.Close();
         }
+
+        private static int[] SubArray(int[] array, int offset, int length)
+        {
+            int[] result = new int[length];
+            Array.Copy(array, offset, result, 0, length);
+            return result;
+        }
     }
 }

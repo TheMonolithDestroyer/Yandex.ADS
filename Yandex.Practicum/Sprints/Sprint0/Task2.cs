@@ -30,5 +30,26 @@ namespace Yandex.Practicum.Sprints.Sprint0
 
             CloseReaderAndWriter();
         }
+
+        private void MovingAverageMethod(int k, int[] timeseries)
+        {
+            var length = timeseries.Length - k;
+            var result = new List<decimal>();
+
+            var endIndex = 0;
+            for (int beginIndex = 0; beginIndex <= length; beginIndex++)
+            {
+                endIndex = beginIndex + k;
+
+                decimal currentSum = 0;
+                for (int v = beginIndex; v < endIndex; v++)
+                {
+                    currentSum += timeseries[v];
+                }
+
+                decimal currentAvg = currentSum / k;
+                result.Add(currentAvg);
+            }
+        }
     }
 }

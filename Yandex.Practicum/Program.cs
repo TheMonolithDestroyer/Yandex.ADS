@@ -16,24 +16,6 @@ namespace Yandex.Practicum
             BinarySearch.MainBinarySearch();
         }
 
-        private static int[] Task4 (int[] numbers, int x)
-        {
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                for (int j = i + 1; j < numbers.Length; j++)
-                {
-                    if (numbers[i] + numbers[j] != x)
-                    {
-                        continue;
-                    }
-
-                    return new int[2] { numbers[i], numbers[j] };
-                }
-            }
-
-            return null;
-        }
-
         private static int ReadInt()
         {
             return int.Parse(_reader.ReadLine());

@@ -13,7 +13,7 @@ namespace Yandex.Practicum
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World");
+            BinarySearch.MainBinarySearch();
         }
 
         private static int[] Task4 (int[] numbers, int x)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Yandex.Practicum.Sprints.Sprint1;
 
 namespace Yandex.Practicum
 {
@@ -12,14 +13,7 @@ namespace Yandex.Practicum
 
         static void Main(string[] args)
         {
-            InitReaderAndWriter();
-
-            int[] numbers = ReadArray();
-            int x = ReadInt();
-
-            Task4(numbers, x);
-
-            CloseReaderAndWriter();
+            Console.WriteLine("Hello World");
         }
 
         private static int[] Task4 (int[] numbers, int x)

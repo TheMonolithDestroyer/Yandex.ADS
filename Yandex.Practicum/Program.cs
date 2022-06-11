@@ -13,7 +13,7 @@ namespace Yandex.Practicum
 
         static void Main(string[] args)
         {
-            BinarySearch.MainBinarySearch();
+            GaussTrick.MainGaussTrick();
         }
 
         private static int ReadInt()

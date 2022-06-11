@@ -13,7 +13,7 @@ namespace Yandex.Practicum
 
         static void Main(string[] args)
         {
-            GaussTrick.MainGaussTrick();
+            MostActivePassenger.MainMostActivePassenger();
         }
 
         private static int ReadInt()

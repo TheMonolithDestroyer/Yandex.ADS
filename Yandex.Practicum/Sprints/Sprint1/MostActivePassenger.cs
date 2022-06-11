@@ -17,17 +17,14 @@ namespace Yandex.Practicum.Sprints.Sprint1
             var entriesByVisitor = new Dictionary<int, int>();
             var bestPassenger = 0;
 
-            // Создаем словарь, где ключ - номер пассажира и значение - число поездок
             for (int i = 0; i < passenger.Length; i++)
             {
+                // Заполняем словарь, где ключ - номер пассажира и значение - число поездок
                 if (!entriesByVisitor.ContainsKey(passenger[i]))
                 {
                     entriesByVisitor.Add(passenger[i], 0);
                 }
-            }
 
-            for (int i = 0; i < passenger.Length; i++)
-            {
                 entriesByVisitor[passenger[i]]++;
                 if (entriesByVisitor[passenger[i]] > entriesByVisitor[bestPassenger])
                 {

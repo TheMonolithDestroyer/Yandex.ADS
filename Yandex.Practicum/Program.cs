@@ -13,7 +13,7 @@ namespace Yandex.Practicum
 
         static void Main(string[] args)
         {
-            MostActivePassenger.MainMostActivePassenger();
+            HappyTicket.MainHappyTicket();
         }
 
         private static int ReadInt()

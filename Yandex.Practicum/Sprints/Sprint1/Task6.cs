@@ -1,20 +1,19 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
-namespace Yandex.Practicum
+namespace Yandex.Practicum.Sprints.Sprint1
 {
-    public class Program
+    public class Task6 : BaseClass
     {
-        private static TextReader _reader;
-        private static TextWriter _writer;
-
-        static void Main(string[] args)
+        public static void MainTask6()
         {
             InitReaderAndWriter();
 
-            string text = ReadString();
+            string text = Common.ReadString(_reader);
             StringBuilder cleanString = new();
 
             int i = 0;
@@ -49,48 +48,11 @@ namespace Yandex.Practicum
             CloseReaderAndWriter();
         }
 
-        public static string ReadString()
-        {
-            return _reader.ReadLine();
-        }
-
         private static string Reverse(string s)
         {
             char[] charArray = s.ToCharArray();
             Array.Reverse(charArray);
             return new string(charArray);
-        }
-
-        private static string[] ReadStringArray()
-        {
-            return _reader.ReadLine()
-                .Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries)
-                .ToArray();
-        }
-
-        private static int ReadInt()
-        {
-            return int.Parse(_reader.ReadLine());
-        }
-
-        private static int[] ReadArray()
-        {
-            return _reader.ReadLine()
-                .Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(int.Parse)
-                .ToArray();
-        }
-
-        private static void InitReaderAndWriter()
-        {
-            _reader = new StreamReader(Console.OpenStandardInput());
-            _writer = new StreamWriter(Console.OpenStandardOutput());
-        }
-
-        private static void CloseReaderAndWriter()
-        {
-            _reader.Close();
-            _writer.Close();
         }
     }
 }

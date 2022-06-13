@@ -9,6 +9,18 @@ namespace Yandex.Practicum
 {
     public static class Common
     {
+        public static string ReadString(TextReader reader)
+        {
+            return reader.ReadLine();
+        }
+
+        public static string[] ReadStringArray(TextReader reader)
+        {
+            return reader.ReadLine()
+                .Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries)
+                .ToArray();
+        }
+
         public static int ReadInt(TextReader reader)
         {
             return int.Parse(reader.ReadLine());

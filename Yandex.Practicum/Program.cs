@@ -1,19 +1,43 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Yandex.Practicum.Sprints.Sprint1;
 
 namespace Yandex.Practicum
 {
     public class Program
     {
-        protected static TextReader _reader;
-        protected static TextWriter _writer;
+        private static TextReader _reader;
+        private static TextWriter _writer;
 
         static void Main(string[] args)
         {
-            PrimeNumbers.MainPrimeNumbers();
+            InitReaderAndWriter();
+
+            var textLength = ReadInt();
+            var text = ReadStringArray();
+
+            int maxSubStrLength = 0;
+            string mostLongSubStr = string.Empty;
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (maxSubStrLength < text[i].Length)
+                {
+                    maxSubStrLength = text[i].Length;
+                    mostLongSubStr = text[i];
+                }
+            }
+
+            _writer.WriteLine(mostLongSubStr);
+            _writer.WriteLine(maxSubStrLength);
+
+            CloseReaderAndWriter();
+        }
+
+        private static string[] ReadStringArray()
+        {
+            return _reader.ReadLine()
+                .Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries)
+                .ToArray();
         }
 
         private static int ReadInt()
@@ -27,14 +51,6 @@ namespace Yandex.Practicum
                 .Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
                 .ToArray();
-        }
-
-        private static List<int> ReadList()
-        {
-            return _reader.ReadLine()
-                .Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(int.Parse)
-                .ToList();
         }
 
         private static void InitReaderAndWriter()

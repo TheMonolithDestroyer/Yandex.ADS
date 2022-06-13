@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.IO;
-using System.Text;
 
 namespace Yandex.Practicum
 {
@@ -14,99 +12,27 @@ namespace Yandex.Practicum
         {
             InitReaderAndWriter();
 
-            var firstBinary = ReadString();
-            var secondBinary = ReadString();
+            int number = ReadInt();
 
-            int i = firstBinary.Length - 1;
-            int j = secondBinary.Length - 1;
+            string result;
+            if (number == 1)
+                result = "True";
 
-            int reminder = 0;
-            Stack myStack = new();
-            while (i >= 0 || j >= 0)
+            int multiplier = 1;
+            while (multiplier < number)
             {
-                char? a = i < 0 ? null : firstBinary[i];
-                char? b = j < 0 ? null : secondBinary[j];
-
-                switch (a, b)
-                {
-                    case (null, '1'):
-                    case ('1', null):
-                        {
-                            myStack.Push(reminder > 0 ? '0' : '1');
-                        }
-                        break;
-                    case (null, '0'):
-                    case ('0', null):
-                        {
-                            if (reminder > 0)
-                            {
-                                myStack.Push('1');
-                                reminder -= 1;
-                            }
-                            else
-                            {
-                                myStack.Push('0');
-                            }
-                        }
-                        break;
-                    case ('0', '0'):
-                        {
-                            if (reminder > 0)
-                            {
-                                myStack.Push('1');
-                                reminder -= 1;
-                            }
-                            else
-                            {
-                                myStack.Push('0');
-                            }
-                        }
-                        break;
-                    case ('1', '0'):
-                    case ('0', '1'):
-                        {
-                            myStack.Push(reminder > 0 ? '0' : '1');
-                        }
-                        break;
-                    case ('1', '1'):
-                        {
-                            if (reminder > 0)
-                            {
-                                myStack.Push('1');
-                            }
-                            else
-                            {
-                                myStack.Push('0');
-                                reminder += 1;
-                            }
-                        }
-                        break;
-                }
-
-                i--;
-                j--;
+                multiplier *= 4;
             }
 
-            if (reminder > 0)
-            {
-                myStack.Push('1');
-            }
+            result = multiplier == number ? "True" : "False";
 
-            StringBuilder sb = new(); 
-            
-            while(myStack.Count > 0)
-            {
-                sb.Append(myStack.Pop());
-            }
-
-            _writer.WriteLine(sb.ToString());
-
+            _writer.WriteLine(result);
             CloseReaderAndWriter();
         }
 
-        public static string ReadString()
+        public static int ReadInt()
         {
-            return _reader.ReadLine();
+            return int.Parse(_reader.ReadLine());
         }
 
         private static void InitReaderAndWriter()

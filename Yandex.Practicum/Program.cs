@@ -13,7 +13,7 @@ namespace Yandex.Practicum
 
         static void Main(string[] args)
         {
-            HappyTicket.MainHappyTicket();
+            PrimeNumbers.MainPrimeNumbers();
         }
 
         private static int ReadInt()

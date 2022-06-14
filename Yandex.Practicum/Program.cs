@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using Yandex.Practicum.Sprints.Sprint1;
 
 namespace Yandex.Practicum
 {
@@ -10,24 +13,7 @@ namespace Yandex.Practicum
 
         static void Main(string[] args)
         {
-            InitReaderAndWriter();
-
-            int number = ReadInt();
-
-            string result;
-            if (number == 1)
-                result = "True";
-
-            int multiplier = 1;
-            while (multiplier < number)
-            {
-                multiplier *= 4;
-            }
-
-            result = multiplier == number ? "True" : "False";
-
-            _writer.WriteLine(result);
-            CloseReaderAndWriter();
+            Task10.MainTask10();
         }
 
         public static int ReadInt()

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Yandex.Practicum.Sprints.Sprint1;
 
 namespace Yandex.Practicum
 {
@@ -13,12 +11,35 @@ namespace Yandex.Practicum
 
         static void Main(string[] args)
         {
-            Task10.MainTask10();
+            InitReaderAndWriter();
+
+            string originalStr = ReadString();
+            originalStr = string.Concat(originalStr.OrderBy(i => i));
+            string damagedStr = ReadString();
+            damagedStr = string.Concat(damagedStr.OrderBy(i => i));
+
+            string result = string.Empty;
+            int i = 0, j = 0;
+            while (j >= 0)
+            {
+                if (i > originalStr.Length - 1 || originalStr[i] != damagedStr[j])
+                {
+                    result += damagedStr[j];
+                    break;
+                }
+
+                i++;
+                j++;
+            }
+
+            _writer.WriteLine(result);
+
+            CloseReaderAndWriter();
         }
 
-        public static int ReadInt()
+        public static string ReadString()
         {
-            return int.Parse(_reader.ReadLine());
+            return _reader.ReadLine();
         }
 
         private static void InitReaderAndWriter()

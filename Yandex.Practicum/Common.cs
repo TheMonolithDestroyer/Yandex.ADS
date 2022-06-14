@@ -14,6 +14,11 @@ namespace Yandex.Practicum
             return reader.ReadLine();
         }
 
+        public static string ReadStringWithoutWhiteSpaces(TextReader reader)
+        {
+            return string.Concat(reader.ReadLine().Where(i => i != ' '));
+        }
+
         public static string[] ReadStringArray(TextReader reader)
         {
             return reader.ReadLine()

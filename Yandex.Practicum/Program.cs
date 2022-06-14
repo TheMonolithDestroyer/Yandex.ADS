@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 
 namespace Yandex.Practicum
 {
@@ -13,26 +12,32 @@ namespace Yandex.Practicum
         {
             InitReaderAndWriter();
 
-            string originalStr = ReadString();
-            originalStr = string.Concat(originalStr.OrderBy(i => i));
-            string damagedStr = ReadString();
-            damagedStr = string.Concat(damagedStr.OrderBy(i => i));
+            int listFormLength = ReadInt();
+            string listForm = ReadString();
+            int kNumber = ReadInt();
 
-            string result = string.Empty;
-            int i = 0, j = 0;
-            while (j >= 0)
+            string concatedListForm = string.Empty;
+            for (int i = 0; i < listForm.Length; i++)
             {
-                if (i > originalStr.Length - 1 || originalStr[i] != damagedStr[j])
+                if (listForm[i] != ' ')
                 {
-                    result += damagedStr[j];
-                    break;
+                    concatedListForm += listForm[i];
                 }
-
-                i++;
-                j++;
             }
 
-            _writer.WriteLine(result);
+            int xNumber = Convert.ToInt32(concatedListForm);
+            int numberResult = xNumber + kNumber;
+
+            string result = string.Empty;
+            while (numberResult > 0)
+            {
+                var middleNumber = numberResult % 10;
+                numberResult /= 10;
+
+                result = middleNumber.ToString() + ' ' + result;
+            }
+
+            _writer.WriteLine(result.TrimEnd());
 
             CloseReaderAndWriter();
         }
@@ -40,6 +45,11 @@ namespace Yandex.Practicum
         public static string ReadString()
         {
             return _reader.ReadLine();
+        }
+
+        public static int ReadInt()
+        {
+            return int.Parse(_reader.ReadLine());
         }
 
         private static void InitReaderAndWriter()

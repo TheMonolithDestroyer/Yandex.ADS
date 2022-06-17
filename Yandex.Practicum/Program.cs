@@ -1,83 +1,56 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 
 namespace Yandex.Practicum
 {
-	// ID = 68983618
-	public class Program
+    // URL - https://contest.yandex.ru/contest/22450/run-report/69009987/
+    // ID - 69009987
+    public class Program
     {
         private static TextReader _reader;
         private static TextWriter _writer;
 
         static void Main(string[] args)
         {
-			InitReaderAndWriter();
+            InitReaderAndWriter();
 
-			int streetLength = ReadInt();
-			int[] blocks = ReadArray();
+            int keyCountToPress = ReadInt();
 
-			int emptyBlock = -1;
-			int nextEmptyBlock = -1;
-
-			int[] result = new int[streetLength];
-			for (int i = 0; i < streetLength; i++)
-			{
-				if (blocks[i] == 0)
-				{
-					result[i] = 0;
-					emptyBlock = i;
-					nextEmptyBlock = -1;
-					continue;
-				}
-
-				int j = i;
-				while (nextEmptyBlock < 0 && j < blocks.Length)
+            var keyCounts = new int[10];
+            for (int i = 0; i < 4; i++)
+            {
+                var row = ReadString();
+                for (int j = 0; j < 4; j++)
                 {
-					if (blocks[j] == 0)
+                    if (row[j] != '.')
                     {
-						nextEmptyBlock = j;
-						break;
+                        keyCounts[row[j] - '0']++;
                     }
-
-					j++;
                 }
+            }
 
-				int distance = 0;
-				if (emptyBlock >= 0 && nextEmptyBlock < 0)
-				{
-					distance = i - emptyBlock;
-				}
-				else if (emptyBlock < 0 && nextEmptyBlock >= 0)
-				{
-					distance = nextEmptyBlock - i;
-				}
-				else
-				{
-					int leftDistance = i - emptyBlock;
-					int rightDistance = nextEmptyBlock - i;
-					distance = leftDistance > rightDistance ? rightDistance : leftDistance;
-				}
+            int points = 0;
+            for (int i = 1; i <= 9; i++)
+            {
+                var keyCount = keyCounts[i];
+                if (keyCount > 0 && keyCount <= keyCountToPress * 2)
+                {
+                    points++;
+                }
+            }
 
-				result[i] = distance;
-			}
+            _writer.WriteLine(points);
+            CloseReaderAndWriter();
+        }
 
-			_writer.WriteLine(string.Join(' ', result));
-
-			CloseReaderAndWriter();
-		}
-
-		private static int[] ReadArray()
-		{
-			return _reader.ReadLine()
-				.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries)
-				.Select(int.Parse)
-				.ToArray();
-		}
-
-		private static int ReadInt()
+        private static int ReadInt()
         {
             return int.Parse(_reader.ReadLine());
+        }
+
+        private static string ReadString()
+        {
+            return _reader.ReadLine();
         }
 
         private static void InitReaderAndWriter()

@@ -27,66 +27,46 @@ namespace Yandex.Practicum.Sprints.Sprint1
 			int streetLength = Common.ReadInt(_reader);
 			int[] blocks = Common.ReadArray(_reader);
 
-			//List<int> emptyBlocks = new List<int>();
-			//for (int i = 0; i < streetLength; i++)
-			//	if (blocks[i] == 0)
-			//		emptyBlocks.Add(i);
-
-			int? emptyBlock = null;
+			int distance = 1000000001;
 			int[] result = new int[streetLength];
 			for (int i = 0; i < streetLength; i++)
-			{
+            {
 				if (blocks[i] == 0)
-				{
-					result[i] = 0;
-					emptyBlock = i;
-					continue;
-				}
-
-				int? nextEmptyBlock = null;
-				for (int j = i; j < blocks.Length; j++)
-				{
-					if (blocks[j] != 0)
-						continue;
-
-					nextEmptyBlock = blocks[j];
-				}
-
-				int distance = 0;
-				if (emptyBlock != null && nextEmptyBlock == null)
                 {
-					distance = i - emptyBlock.Value;
-                }
-				else if (emptyBlock == null && nextEmptyBlock != null)
+					distance = 0;
+					break;
+				}
+				else
                 {
-					distance = nextEmptyBlock.Value - i;
+					if (distance == 1000000001)
+                    {
+						result[i] = distance;
+                    }
+                    else
+                    {
+						distance += 1;
+						result[i] = distance;
+					}
+				}
+            }
+
+            for (int i = streetLength - 1; i >= 0; i--)
+            {
+				if (result[i] == 0)
+                {
+					distance = 0;
                 }
                 else
                 {
-					int leftDistance = i - emptyBlock.Value;
-					int rightDistance = nextEmptyBlock.Value - i;
-					distance = leftDistance > rightDistance ? rightDistance : leftDistance;
+					distance += 1;
+					if (distance < result[i])
+                    {
+						result[i] = distance;
+                    }
                 }
-
-				result[i] = distance;
-				//int? distance = null;
-				//foreach (var j in emptyBlocks)
-				//{
-				//	var nextDistance = i - j;
-				//	if (nextDistance < 0)
-				//		nextDistance *= -1;
-
-				//	if (!distance.HasValue || (distance.HasValue && distance > nextDistance))
-				//	{
-				//		distance = nextDistance;
-				//	}
-				//}
-
-				//result[i] = distance.Value;
 			}
 
 			_writer.WriteLine(string.Join(' ', result));
-
 			CloseReaderAndWriter();
 		}
 	}

@@ -1,12 +1,12 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Yandex.Practicum
+namespace Yandex.Practicum.Sprints.Sprint2
 {
-	// ID - 69112928
-	// Successfull delivery url - https://contest.yandex.ru/contest/22779/run-report/69112928/
-	public class Program
+    public class TaskA : BaseClass
     {
 		// «входные данные» — «ожидаемый результат»
 		// 4, 3
@@ -38,28 +38,24 @@ namespace Yandex.Practicum
 
 		// -3, -4
 		// empty, empty
-
-		private static TextReader _reader;
-		private static TextWriter _writer;
-
-		private static void Main(string[] args)
+		public static void MainTaskA()
 		{
 			InitReaderAndWriter();
 
-			int rowCount = ReadInt();
-			int colCount = ReadInt();
+			int rowCount = Common.ReadInt(_reader);
+			int colCount = Common.ReadInt(_reader);
 
 			if (rowCount <= 0 || colCount <= 0)
-            {
+			{
 				_writer.Write("");
 				CloseReaderAndWriter();
 				return;
-            }
+			}
 
 			int[,] result = new int[colCount, rowCount];
 			for (int row = 0; row < rowCount; row++)
 			{
-				int[] rowValues = ReadArray();
+				int[] rowValues = Common.ReadArray(_reader);
 				for (int col = 0; col < colCount; col++)
 				{
 					result[col, row] = rowValues[col];
@@ -80,31 +76,6 @@ namespace Yandex.Practicum
 			}
 
 			CloseReaderAndWriter();
-		}
-
-		private static void InitReaderAndWriter()
-		{
-			_reader = new StreamReader(Console.OpenStandardInput());
-			_writer = new StreamWriter(Console.OpenStandardOutput());
-		}
-
-		private static void CloseReaderAndWriter()
-		{
-			_reader.Close();
-			_writer.Close();
-		}
-
-		private static int ReadInt()
-		{
-			return int.Parse(_reader.ReadLine());
-		}
-
-		private static int[] ReadArray()
-		{
-			return _reader.ReadLine()
-					   .Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries)
-					   .Select(int.Parse)
-					   .ToArray();
 		}
 	}
 }

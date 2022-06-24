@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Yandex.Practicum.Classes;
 
 namespace Yandex.Practicum
 {
@@ -52,6 +51,17 @@ namespace Yandex.Practicum
             char[] charArray = s.ToCharArray();
             Array.Reverse(charArray);
             return new string(charArray);
+        }
+
+        public static void PrintLinkedList<T>(Node<T> head, TextWriter writer)
+        {
+            while(head != null)
+            {
+                writer.WriteLine(head.Value);
+                head = head.Next;
+            }
+
+            writer.WriteLine(head);
         }
     }
 }

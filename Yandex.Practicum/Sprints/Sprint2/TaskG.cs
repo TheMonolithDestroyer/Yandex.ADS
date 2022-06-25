@@ -1,9 +1,12 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Yandex.Practicum.Sprints.Sprint2
 {
-    public class TaskF : BaseClass
+    public class TaskG : BaseClass
     {
 		#region Tests
 		// 8, get_max, push 7, pop, push -2, push -1, pop, get_max, get_max

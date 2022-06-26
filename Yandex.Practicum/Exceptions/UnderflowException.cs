@@ -1,6 +1,6 @@
 using System;
 
-namespace Yandex.Exceptions
+namespace Yandex.Practicum.Exceptions
 {
     public class UnderflowException : Exception
     {

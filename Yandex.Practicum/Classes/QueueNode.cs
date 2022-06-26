@@ -1,5 +1,5 @@
 using System;
-using Yandex.Exceptions;
+using Yandex.Practicum.Exceptions;
 
 namespace Yandex.Practicum.Classes
 {

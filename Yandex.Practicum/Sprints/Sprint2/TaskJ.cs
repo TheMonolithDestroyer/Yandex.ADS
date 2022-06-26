@@ -12,7 +12,7 @@ namespace Yandex.Practicum.Sprints.Sprint2
             
             int commandCount = Common.ReadInt(_reader);
 
-            QueueNode queue = new QueueNode(); 
+            QueueNode2 queue = new QueueNode2(); 
             while(commandCount > 0)
             {
                 string command = Common.ReadString(_reader);
@@ -34,7 +34,7 @@ namespace Yandex.Practicum.Sprints.Sprint2
             CloseReaderAndWriter();
         }
 
-        private static void PrintGotten(QueueNode queue)
+        private static void PrintGotten(QueueNode2 queue)
         {
             if (queue.Count <= 0)
             {
@@ -46,12 +46,12 @@ namespace Yandex.Practicum.Sprints.Sprint2
             }
         }
 
-        private static void PrintSizeOfQueue(QueueNode queue)
+        private static void PrintSizeOfQueue(QueueNode2 queue)
         {
             _writer.WriteLine(queue.Count);
         }
 
-        private static void PushValueToQueue(QueueNode queue, string command)
+        private static void PushValueToQueue(QueueNode2 queue, string command)
         {
             string[] commandArr = command.Split(' ');
             int value = Convert.ToInt32(commandArr[1]);

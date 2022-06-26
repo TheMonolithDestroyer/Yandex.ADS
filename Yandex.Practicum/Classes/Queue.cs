@@ -1,5 +1,4 @@
 using System;
-using Yandex.Exceptions;
 
 namespace Yandex.Practicum.Classes
 {
@@ -35,7 +34,7 @@ namespace Yandex.Practicum.Classes
         public int Pop()
         {
             if (_count <= 0) 
-                throw new UnderflowException("You can not pop an empty queue!");
+                throw new Exceptions.UnderflowException("You can not pop an empty queue!");
 
             int item = _queue[_head];
             _queue[_head] = 0;
@@ -48,7 +47,7 @@ namespace Yandex.Practicum.Classes
         public int Peek()
         {
             if (_count <= 0) 
-                throw new UnderflowException("You can not peek an empty queue!");
+                throw new Exceptions.UnderflowException("You can not peek an empty queue!");
 
             int item = _queue[_head];
 

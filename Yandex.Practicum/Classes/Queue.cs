@@ -8,27 +8,27 @@ namespace Yandex.Practicum.Classes
         private int _head;
         private int _tail;
         private int _count;
-        private int _maxN;
+        private readonly int _maxSize;
         public int Count { get => _count; private set => _count = value; }
         private int[] _queue = null;
 
-        public Queue(int size) 
+        public Queue(int maxSize) 
         {
-            InitQueue(size);
+            InitQueue(maxSize);
 
             _head = 0;
             _tail = 0;
-            _maxN = size;
+            _maxSize = maxSize;
             _count = 0;
         }
 
         public void Push(int item)
         {
-            if (_count >= _maxN) 
+            if (_count >= _maxSize) 
                 throw new OverflowException(message: "You can not insert an item into the full queue");
             
             _queue[_tail] = item;
-            _tail = (_tail + 1) % _maxN;
+            _tail = (_tail + 1) % _maxSize;
             _count++;
         }
 
@@ -39,8 +39,8 @@ namespace Yandex.Practicum.Classes
 
             int item = _queue[_head];
             _queue[_head] = 0;
-            _head = (_head + 1) % _maxN;
-            _count++;
+            _head = (_head + 1) % _maxSize;
+            Count--;
 
             return item;
         }

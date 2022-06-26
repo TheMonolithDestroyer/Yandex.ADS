@@ -7,7 +7,7 @@ namespace Yandex.Practicum.Classes
         public TValue Value { get; private set; }
         public Node<TValue> Next { get; set; }
         public Node<TValue> Prev { get; set; }
-
+        
         public Node(TValue value, Node<TValue> next, Node<TValue> prev)
         {
             Value = value;

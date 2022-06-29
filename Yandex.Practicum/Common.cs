@@ -30,6 +30,11 @@ namespace Yandex.Practicum
             return int.Parse(reader.ReadLine());
         }
 
+        public static short ReadShort(TextReader reader)
+        {
+            return short.Parse(reader.ReadLine());
+        }
+
         public static List<int> ReadList(TextReader reader)
         {
             return reader.ReadLine()

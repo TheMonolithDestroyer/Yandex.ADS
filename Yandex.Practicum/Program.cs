@@ -1,42 +1,29 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
 namespace Yandex.Practicum
 {
-	public class Program
+    public class Program
     {
-		private static TextReader _reader;
+        private static TextReader _reader;
         private static TextWriter _writer;
 
-		static void Main(string[] args)
-		{
+        static void Main(string[] args)
+        {
             InitReaderAndWriter();
 
-            int trainee = ReadInt();
-
-            var commits = ComputeTraineeCommits(trainee);
-
-            _writer.WriteLine(commits);
+            _writer.WriteLine("Hello Yandex!");
 
             CloseReaderAndWriter();
         }
 
-        static int ReadInt()
+        static int[] ReadArray()
         {
-            return int.Parse(_reader.ReadLine());
-        }
-
-        static int ComputeTraineeCommits(int trainee)
-        {
-            // 1 1 2 3 5 8 13 21 33 45
-            // F1 = 1;
-            // F2 = 2;
-            // Fn = Fn-1 + Fn-2;
-
-            if (trainee == 0 || trainee == 1)
-                return 1;
-
-            return ComputeTraineeCommits(trainee - 1) + ComputeTraineeCommits(trainee - 2);
+            return _reader.ReadLine()
+                .Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(int.Parse)
+                .ToArray();
         }
 
         static void InitReaderAndWriter()

@@ -39,7 +39,7 @@ namespace Yandex.Practicum.Classes
             int item = _queue[_head];
             _queue[_head] = 0;
             _head = (_head + 1) % _maxSize;
-            Count--;
+            _count--;
 
             return item;
         }

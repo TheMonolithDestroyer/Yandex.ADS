@@ -1,13 +1,12 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 
 namespace Yandex.Practicum
 {
     public class Program
     {
-        private static TextReader _reader;
-        private static TextWriter _writer;
+        static TextReader _reader;
+        static TextWriter _writer;
 
         static void Main(string[] args)
         {
@@ -15,15 +14,8 @@ namespace Yandex.Practicum
 
             _writer.WriteLine("Hello Yandex!");
 
+            _writer.Close();
             CloseReaderAndWriter();
-        }
-
-        static int[] ReadArray()
-        {
-            return _reader.ReadLine()
-                .Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(int.Parse)
-                .ToArray();
         }
 
         static void InitReaderAndWriter()
@@ -36,6 +28,16 @@ namespace Yandex.Practicum
         {
             _reader.Close();
             _writer.Close();
+        }
+
+        static int ReadInt()
+        {
+            return int.Parse(_reader.ReadLine());
+        }
+
+        static string ReadString()
+        {
+            return _reader.ReadLine();
         }
     }
 }

@@ -10,9 +10,37 @@ namespace Yandex.Practicum.Sprints.Sprint2
     public class TaskFinalA : BaseClass
     {
         // ПРИНЦИП РАБОТЫ
+        //  Как написано в описании задачи, мне нужно было реализовать структуру данных Deque через кольцевой буфер.
+        //  Кольцевой буфер или циклический буфер - это буфер фиксированного размера таким образом, как будто бы после последнего элемента сразу же снова идет первый.
+        //  То есть, Deque Я реализовал с помощью Array, где если ячейка под индексом maxSize - 1 будет заполнена, то добавление идет в ячейку под индексом 0, и наоборот.
+
+        //  При pop_back и pop_front проверяю пустой ли массив чтобы избежать Underflow Exception. Если дек пуст, то вывожу "error", иначе вывожу значение.
+        //  При push_front и push_back проверяю не полный ли массив чтоюы избежать Overflow Exception. Если дек полн, то вывожу "error", иначе добавляю.
+
+        //  Чтобы после последнего элемента происходило добавление по индексу 0, произвожу операцию (tail+1) mod maxSize.
+        //  При операции push_front, если ячейка под индексом 0 занят, добавляю элемент в ячейку под индексом maxSize - 1.
+
+        //  Операции push_front, push_back, pop_front, pop_back вынес в отдельный метод, по принципy SOLID. S - single responsibility.
+
         // ДОКАЗАТЕЛЬСТВО КОРРЕКТНОСТИ
+        //  В описании задачи написано, что Дек должен быть фиксированного размера.
+        //  Поэтому я реализовал данную структуру данных через массив с фиксированным размером.
+        //  Я мог реализовать через массив, меняя его размер при переполнении, но это потребовало бы амортизированной временной сложности и O(N) пространственной сложности. 
+        //
+        //  Еще написано, что нужно использовать принцип кольцевого буфера.
+        //  В пустом деке и голова, и хвост указывают на ячейку с индексом 0.
+        //  При манипуляции полями _head и _tail, можно добавлять элементы из обоих концов дека. 
+        //  Если push_front, значение _head уменьшается и элемент будет добавлен в ячейку под _head.
+        //  Если push_back, значение _tail увеличивается по модулю _maxSize и элемент будет добавлен в ячейку под _tail.
+        //  Если pop_front, значение _head увеличивается по модулю _maxSize и элемент будет добавлен в ячейку под _head.
+        //  Если pop_back, значение _tail ументшается и элемент будет добавлен в ячейку под _tail.
+
         // ВРЕМЕННАЯ СЛОЖНОСТЬ
+        // Перебор всех команд в цикле - O(N)
+        // Дек у нас фиксированного размера и использован принцип кольцевого буфера, то добавление и удаление занимает O(1) константное время.
+
         // ПРОСТРАНСТВЕННАЯ СЛОЖНОСТЬ
+        // Space complexity - O(1) константное. Так как для любой операции не потребуется дополнительное пространство
 
         #region Examples
         // 1) 4 4 pushF 861, pushF -819 popB popB
@@ -55,52 +83,72 @@ namespace Yandex.Practicum.Sprints.Sprint2
                 switch (commandAndValue[0])
                 {
                     case "push_front":
-                        if (deque.Count >= dequeMaxSize)
-                        {
-                            _writer.WriteLine("error");
-                        }
-                        else
-                        {
-                            int value = Convert.ToInt32(commandAndValue[1]);
-                            deque.PushFront(value);
-                        }
+                        PushFront(deque, commandAndValue, dequeMaxSize);
                         break;
                     case "push_back":
-                        if (deque.Count >= dequeMaxSize)
-                        {
-                            _writer.WriteLine("error");
-                        }
-                        else
-                        {
-                            var value = Convert.ToInt32(commandAndValue[1]);
-                            deque.PushBack(value);
-                        }
+                        PushBack(deque, commandAndValue, dequeMaxSize);
                         break;
                     case "pop_front":
-                        if (deque.Count == 0)
-                        {
-                            _writer.WriteLine("error");
-                        }
-                        else
-                        {
-                            _writer.WriteLine(deque.PopFront());
-                        }
+                        PopFront(deque);
                         break;
                     case "pop_back":
-                        if (deque.Count == 0)
-                        {
-                            _writer.WriteLine("error");
-                        }
-                        else
-                        {
-                            _writer.WriteLine(deque.PopBack());
-                        }
+                        PopBack(deque);
                         break;
                 }
             }
 
             _writer.Close();
             CloseReaderAndWriter();
+        }
+
+        static void PushFront(Deque deque, string[] commandAndValue,  int dequeMaxSize)
+        {
+            if (deque.Count >= dequeMaxSize)
+            {
+                _writer.WriteLine("error");
+            }
+            else
+            {
+                int value = Convert.ToInt32(commandAndValue[1]);
+                deque.PushFront(value);
+            }
+        }
+
+        static void PushBack(Deque deque, string[] commandAndValue, int dequeMaxSize)
+        {
+            if (deque.Count >= dequeMaxSize)
+            {
+                _writer.WriteLine("error");
+            }
+            else
+            {
+                var value = Convert.ToInt32(commandAndValue[1]);
+                deque.PushBack(value);
+            }
+        }
+
+        static void PopFront(Deque deque)
+        {
+            if (deque.Count == 0)
+            {
+                _writer.WriteLine("error");
+            }
+            else
+            {
+                _writer.WriteLine(deque.PopFront());
+            }
+        }
+
+        static void PopBack(Deque deque)
+        {
+            if (deque.Count == 0)
+            {
+                _writer.WriteLine("error");
+            }
+            else
+            {
+                _writer.WriteLine(deque.PopBack());
+            }
         }
     }
 }

@@ -31,11 +31,7 @@ namespace Yandex.Practicum.Classes
             if (_count == 0)
                 throw new UnderflowException("A Deque is empty!");
 
-            if (_tail < 1)
-                _tail = _maxSize - 1;
-            else
-                _tail--;
-
+            _tail = (_tail - 1 + _maxSize) % _maxSize;
             int item = _deque[_tail];
             _deque[_tail] = 0;
             _count--;
@@ -61,16 +57,8 @@ namespace Yandex.Practicum.Classes
             if (_count >= _maxSize)
                 throw new OverflowException("A Deque is full!");
 
-            if (_head == 0 && _count == 0)
-            {
-                _deque[_tail] = value;
-                _tail = (_tail + 1) % _maxSize;
-            }
-            else
-            {
-                _head = _head < 1 ? _maxSize - 1 : _head -=1;
-                _deque[_head] = value;
-            }
+            _head = (_head - 1 + _maxSize) % _maxSize;
+            _deque[_head] = value;
             _count++;
         }
 

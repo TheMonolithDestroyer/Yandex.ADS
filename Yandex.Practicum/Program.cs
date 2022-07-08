@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
+using Yandex.Practicum.Sprints.Sprint3;
 
 namespace Yandex.Practicum
 {
@@ -10,12 +12,7 @@ namespace Yandex.Practicum
 
         static void Main(string[] args)
         {
-            InitReaderAndWriter();
-
-            _writer.WriteLine("Hello Yandex!");
-
-            _writer.Close();
-            CloseReaderAndWriter();
+            TaskL.Execute();
         }
 
         static void InitReaderAndWriter()
@@ -35,9 +32,12 @@ namespace Yandex.Practicum
             return int.Parse(_reader.ReadLine());
         }
 
-        static string ReadString()
+        public static int[] ReadArray()
         {
-            return _reader.ReadLine();
+            return _reader.ReadLine()
+                .Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(int.Parse)
+                .ToArray();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Yandex.Practicum.Classes
 
         public void Push(int value)
         {
-            Node<int> node = new Node<int>(value, null);
+            Node<int> node = new Node<int>(value, null, null);
             if (node == null)
                 throw new OverflowException(message: "Heap overflow");
 

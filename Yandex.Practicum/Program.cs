@@ -12,7 +12,7 @@ namespace Yandex.Practicum
 
         static void Main(string[] args)
         {
-            TaskL.Execute();
+            ZeroOneSequenceGeneration.Execute();
         }
 
         static void InitReaderAndWriter()

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Yandex.Practicum.Sprints.Sprint3;
 
 namespace Yandex.Practicum
 {
@@ -12,7 +11,7 @@ namespace Yandex.Practicum
 
         static void Main(string[] args)
         {
-            ZeroOneSequenceGeneration.Execute();
+            _writer.WriteLine("Pnh!");
         }
 
         static void InitReaderAndWriter()

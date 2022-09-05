@@ -40,7 +40,7 @@ namespace Yandex.Practicum.Classes
         public int Pop()
         {   
             if (_count <= 0)
-                throw new UnderflowException(message: "Can not pop an empty queue");
+                throw new ArgumentUnderflowException(message: "Can not pop an empty queue");
             
             _count--;
             Node<int> node = _queue;
@@ -52,7 +52,7 @@ namespace Yandex.Practicum.Classes
         public int Peek()
         {
             if (_count <= 0)
-                throw new UnderflowException(message: "Can not peek an empty queue");
+                throw new ArgumentUnderflowException(message: "Can not peek an empty queue");
 
             return _queue.Value;
         }

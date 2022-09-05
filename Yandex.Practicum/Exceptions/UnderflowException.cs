@@ -2,9 +2,9 @@ using System;
 
 namespace Yandex.Practicum.Exceptions
 {
-    public class UnderflowException : Exception
+    public class ArgumentUnderflowException : Exception
     {
-        public UnderflowException(string message): base(message)
+        public ArgumentUnderflowException(string message): base(message)
         {
         }
     }

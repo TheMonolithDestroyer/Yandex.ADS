@@ -38,7 +38,7 @@ namespace Yandex.Practicum.Classes
         public int Pop()
         {
             if (_head == null) 
-                throw new UnderflowException("Can not pop an empty queue");
+                throw new ArgumentUnderflowException("Can not pop an empty queue");
 
             Node<int> node = _head;
             _head = _head.Next;
@@ -54,7 +54,7 @@ namespace Yandex.Practicum.Classes
         public int Peek()
         {
             if (_head == null) 
-                throw new UnderflowException("Can not peek an empty queue");
+                throw new ArgumentUnderflowException("Can not peek an empty queue");
 
             return _head.Value;
         }

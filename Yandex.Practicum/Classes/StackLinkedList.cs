@@ -40,7 +40,7 @@ namespace Yandex.Practicum.Classes
         public int Pop ()
         {
             if (_head == null)
-                throw new UnderflowException("A stack is empty!");
+                throw new ArgumentUnderflowException("A stack is empty!");
 
             int item = _head.Value;
             _head = _head.Next;
@@ -52,7 +52,7 @@ namespace Yandex.Practicum.Classes
         public int Peek()
         {
             if (_head == null)
-                throw new UnderflowException("A stack is empty!");
+                throw new ArgumentUnderflowException("A stack is empty!");
 
             return _head.Value;
         }

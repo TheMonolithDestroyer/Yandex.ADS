@@ -1,4 +1,5 @@
 using System;
+using Yandex.Practicum.Exceptions;
 
 namespace Yandex.Practicum.Classes
 {
@@ -8,7 +9,11 @@ namespace Yandex.Practicum.Classes
         private int _tail;
         private int _count;
         private readonly int _maxSize;
-        public int Count { get => _count; private set => _count = value; }
+        public int Count 
+        { 
+            get => _count; 
+            private set => _count = value; 
+        }
         private int[] _queue = null;
 
         public Queue(int maxSize) 
@@ -21,10 +26,18 @@ namespace Yandex.Practicum.Classes
             _count = 0;
         }
 
+        private void InitQueue(int size)
+        {
+            if (size <= 0) 
+                throw new ArgumentOutOfRangeException(message: "The size of a Queue can not be 0 or less", paramName: $"Input size: { size }");
+
+            _queue = new int[size];
+        }
+
         public void Push(int item)
         {
             if (_count >= _maxSize) 
-                throw new OverflowException(message: "You can not insert an item into the full queue");
+                throw new OverflowException(message: "Can not insert an item into the full queue");
             
             _queue[_tail] = item;
             _tail = (_tail + 1) % _maxSize;
@@ -34,7 +47,7 @@ namespace Yandex.Practicum.Classes
         public int Pop()
         {
             if (_count <= 0) 
-                throw new Exceptions.UnderflowException("You can not pop an empty queue!");
+                throw new ArgumentUnderflowException("Can not pop an empty queue!");
 
             int item = _queue[_head];
             _queue[_head] = 0;
@@ -47,19 +60,11 @@ namespace Yandex.Practicum.Classes
         public int Peek()
         {
             if (_count <= 0) 
-                throw new Exceptions.UnderflowException("You can not peek an empty queue!");
+                throw new ArgumentUnderflowException("Can not peek an empty queue!");
 
             int item = _queue[_head];
 
             return item;
-        }
-
-        private void InitQueue(int size)
-        {
-            if (size <= 0) 
-                throw new ArgumentOutOfRangeException(message: "The size of a Queue can not be 0 or less", paramName: $"Input size: { size }");
-
-            _queue = new int[size];
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Yandex.Practicum.Classes
         public int PopBack()
         {
             if (_count == 0)
-                throw new UnderflowException("A Deque is empty!");
+                throw new ArgumentUnderflowException("A Deque is empty!");
 
             _tail = (_tail - 1 + _maxSize) % _maxSize;
             int item = _deque[_tail];
@@ -42,7 +42,7 @@ namespace Yandex.Practicum.Classes
         public int PopFront()
         {
             if (_count == 0)
-                throw new UnderflowException("A Deque is empty!");
+                throw new ArgumentUnderflowException("A Deque is empty!");
 
             int item = _deque[_head];
             _deque[_head] = 0;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using Yandex.Practicum.Sprints.Sprint3;
 
 namespace Yandex.Practicum
 {
@@ -11,12 +12,7 @@ namespace Yandex.Practicum
 
         static void Main(string[] args)
         {
-            // 1 2 3
-            // 1 3 2
-            // 3 1 2
-            // 3 2 1
-            // 2 3 1
-            // 2 1 3
+            RecursionBinarySearch.Execute();
         }
 
         static void InitReaderAndWriter()

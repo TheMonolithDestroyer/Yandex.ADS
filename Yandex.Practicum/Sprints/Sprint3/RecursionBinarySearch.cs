@@ -12,8 +12,8 @@ namespace Yandex.Practicum.Sprints.Sprint3
         {
             InitReaderAndWriter();
 
-            int[] arr = Common.ReadArray(_reader);
-            int item = Common.ReadInt(_reader);
+            int[] arr = new int[12] { 1, 2, 3, 4, 7, 5, 6, 9, 10, 22, 54, 55 };//Common.ReadArray(_reader);
+            int item = 55;
 
             Array.Sort(arr);
 
